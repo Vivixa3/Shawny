@@ -1,0 +1,299 @@
+:root {
+  overflow: hidden;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+p,
+h1,
+h2 {
+  margin: 0;
+  color: #3f3d3d;
+}
+
+#Snow {
+  height: 2%;
+  width: 2%;
+  background-color: rgb(255, 255, 255);
+  filter: blur(12px) brightness(2);
+  border-radius: 50%;
+  position: relative;
+  z-index: 3;
+  animation: moveSnow 5s ease-in-out forwards;
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  scarestyle {
+    position: absolute;
+    background-color: #111010;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    background-image: url('/_pages/_games/intro-story/images/MrBackground.jpg');
+    background-size: cover;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  scarestylecontent {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas: "top" "bottom";
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    padding: 15px;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    backdrop-filter: blur(12px) brightness(1.5);
+  }
+
+  top {
+    grid-area: top;
+    display: flex;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  bottom {
+    grid-area: bottom;
+    display: flex;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  #intro-title {
+    display: inline-block;
+    border: none;
+    position: absolute;
+    font-size: 25px;
+  }
+
+  typewriter {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    text-align: left;
+    background-color: #111010;
+    color: #3f3d3d;
+    padding: 15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande';
+    font-size: 25px;
+  }
+
+  #intro-disturbance {
+    display: none;
+  }
+
+  #main-menu {
+    display: none;
+  }
+
+  #snowCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  #scared {
+    width: 130vw;
+    height: 130vh;
+    transform: translate(-170px, -120px);
+    z-index: 99;
+    border: none;
+  }
+
+  #chapter {
+    width: 300px;
+    height: 150px;
+    border: none;
+    background-color: transparent;
+    color: #3f3d3d;
+    font-size: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    z-index: 2;
+  }
+
+  .transparent-text {
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+      'Lucida Sans', Arial, sans-serif;
+  }
+}
+
+/* Desktop Computers */
+@media (min-width: 768px) {
+  #snowflakes-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  scarestyle {
+    position: absolute;
+    background-color: #111010;
+    color: #3f3d3d;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    background-image: url('/_pages/_games/intro-story/images/MrBackground.jpg');
+    background-size: cover;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  scarestylecontent {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas: "top" "bottom";
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    padding: 15px;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    backdrop-filter: blur(12px) brightness(1.5);
+  }
+
+  top {
+    grid-area: top;
+    display: flex;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+
+  bottom {
+    grid-area: bottom;
+    display: flex;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  typewriter {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    text-align: justify;
+    box-sizing: border-box;
+    background-color: #111010;
+    color: #3f3d3d;;
+    padding: 15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande';
+    font-size: 25px;
+  }
+
+  #intro-disturbance {
+    display: none;
+  }
+
+  #main-menu {
+    display: none;
+  }
+
+  #snowCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  #scared {
+    width: 130vw;
+    height: 130vh;
+    transform: translate(-170px, -120px);
+    z-index: 99;
+    border: none;
+  }
+
+  #chapter {
+    width: 300px;
+    height: 150px;
+    border: none;
+    background-color: transparent;
+    color: #3f3d3d;
+    font-size: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    z-index: 2;
+  }
+
+  .transparent-text {
+    background-color: transparent;
+    background: linear-gradient(45deg, rgb(179, 178, 179), rgb(114, 114, 114));
+    -webkit-text-fill-color: transparent;
+    /* Ensures text is transparent to show gradient */
+    background-clip: text;
+    /* For non-WebKit browsers */
+    color: transparent;
+    /* Fallback color */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+      'Lucida Sans', Arial, sans-serif;
+  }
+
+  #intro-title {
+    display: inline-block;
+    border: none;
+    position: absolute;
+    font-size: 70px;
+  }
+}
+
+@keyframes moveSnow {
+  from {
+    top: var(--start-top);
+    left: var(--start-left);
+  }
+
+  to {
+    bottom: var(--end-bottom);
+    right: var(--end-right);
+  }
+}

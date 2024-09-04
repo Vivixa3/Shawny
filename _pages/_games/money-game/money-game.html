@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Money Game</title>
+
+        <link rel="stylesheet" href="/_pages/_games/money-game/stylesheets/stats-menu.css">
+        <link rel="stylesheet" href="/_pages/_games/money-game/stylesheets/style.css">
+        <link rel="stylesheet" href="/_pages/_games/money-game/stylesheets/browser-style.css">
+        <link rel="stylesheet" href="/_pages/_games/money-game/stylesheets/page-style.css">
+        <link rel="stylesheet" href="/_pages/_games/money-game/stylesheets/dashboard.css">
+        <link rel="stylesheet" href="/_pages/_games/money-game/stylesheets/main-menu.css">
+        <link rel="stylesheet" href="/_pages/_games/money-game/stylesheets/manage-properties-window.css">
+
+        <script src="/_public/services/service.js"></script>
+        <script src="/_public/libraries/public-library.js"></script>
+
+    </head>
+
+    <body>
+
+        <div class="main-menu" id="menu">
+
+            <!-- ^ Main menu -->
+            <div id="main-menu-content">
+                <div id="main-menu-title" class="main-menu-content">
+                    <h1>Money Game</h1>
+
+                    <br>
+
+                    <p>Click play to start</p>
+
+                    <br><br><br><br><br>
+
+                    <p>The development of this game is managed by: S. Xavier Charland L.</p>
+                </div>
+
+                <div id="main-menu-start-bttn-container" class="main-menu-content">
+                    <button onclick="startGame()">Play</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="title-bar">
+                <button id="suicide-button" onclick="suicide()"></button>
+                <h1>Money Game</h1>
+                <p>Tap the screen to start making money</p>
+            </div>
+
+            <p id="counter">Money: 0</p>
+
+            <div id="actions"></div>
+
+            <button onclick="openBrowser()">Browse Internet</button>
+
+            <browser>
+                <browsercontent>
+                    <browserblur>
+                        <browsertopbar>
+                            <button onclick="closeBrowser()" style="margin: 2px; width: 15px; height: 15px; background-color: red; border: none; border-radius: 25px; color: white;"></button>
+                            <button style="margin: 2px; width: 15px; height: 15px; background-color: yellow; border: none; border-radius: 25px; color: white;"></button>
+                            <button style="margin: 2px; width: 15px; height: 15px; background-color: green; border: none; border-radius: 25px; color: white;"></button>
+        
+                            <span style="width: 100%;">
+                                <p>Desktop Browser</p>
+                            </span>
+                        </browsertopbar>
+                        
+                        <browsercontainer>
+
+                            
+                            <!-- ^ Properties managment window -->
+                            <div id="manage-property-window">
+                                <div id="dragg" style="width: 100%;">
+                                    <p>Manage Your Properties</p>
+                                </div>
+                                <button id="close-manage-property-window-button"
+                                    onclick="closeManagePropertyWindow()"></button>
+    
+                                <br>
+    
+                                <div id="property-window-content"></div>
+                            </div>
+    
+                            <button onclick="viewStats()" class="tab-bttn" id="stats-bttn" disabled>Your Stats</button>
+                            <button onclick="viewServices()" class="tab-bttn" id="services-bttn">Services</button>
+                            <button onclick="viewHousingMarket()" class="tab-bttn" id="property-bttn">Housingmarket</button>
+                            <button onclick="viewInvestments()" class="tab-bttn" id="crypto-bttn">Investments</button>
+    
+                            <!-- ^ Webpage content -->
+                            <webpage>
+    
+                                <!-- ^ Stats menu -->
+                                <stats>
+                                    <statsheader>
+                                        <div class="time">
+                                            <div class="month">
+                                                <h1 id="time-of-year">Current month: January</h1>
+                                            </div>
+    
+                                            <div class="age">
+                                                <p id="age">You are in your first month.</p>
+                                            </div>
+                                        </div>
+                                    </statsheader>
+    
+                                    <statscontent>
+                                        <p class="inline-block" id="total-properties">🏡 Total
+                                            properties:
+                                            No
+                                            properties</p>
+                                        <button class="text-button inline-block"
+                                            onclick="openManagePropertyWindow()">Manage
+                                            Properties</button>
+    
+                                        <br>
+    
+                                        <p class="inline-block">🤑 Net worth: </p>
+                                        <p class="inline-block" id="net-worth"></p>
+    
+                                        <br>
+    
+                                        <p class="inline-block">💵 Salary: </p>
+                                        <p class="inline-block" id="salary">No current salary</p>
+    
+                                        <br>
+    
+                                        <p class="inline-block">💰 Last month profit: </p>
+                                        <p id="last-month-profit" class="inline-block"></p>
+                                    </statscontent>
+                                </stats>
+    
+                                <!-- ^ Upgrade menu -->
+                                <services>
+    
+                                    <h2>
+                                        Services
+                                    </h2>
+    
+                                    <grid>
+                                        <card id="education-card" onclick="commingSoon()">
+    
+                                            <cardtitle>School/Degree</cardtitle>
+    
+                                            <cardemoji>
+                                                🎓
+                                            </cardemoji>
+    
+                                            <cardtextcontainer>
+                                                <span>
+                                                    <p>Level: </p>
+                                                    <p style="color: rgb(0, 255, 0);" id="education-level">High school</p>
+                                                </span>
+                                                <span>
+                                                    <p>Cost to enroll: </p>
+                                                    <p style="color: rgb(0, 255, 0);" id="education-cost">none</p>
+                                                </span>
+                                                <span>
+                                                    <p>Time to finish: </p>
+                                                    <p style="color: rgb(0, 255, 0);" id="education-duration">5 years</p>
+                                                </span>
+                                                <span>
+                                                    <p>Promised salary: </p>
+                                                    <p style="color: rgb(255, 0, 0);" id="education-salary">$11/tap</p>
+                                                </span>
+                                            </cardtextcontainer>
+    
+                                        </card>
+                                        <card id="business-card" onclick="commingSoon()">
+    
+                                            <cardtitle>Start a business</cardtitle>
+    
+                                            <cardemoji>
+                                                💼
+                                            </cardemoji>
+    
+                                            <cardtextcontainer>
+                                                <span>
+                                                    <p><bold>Business types</bold></p>
+                                                </span>
+                                                <span>
+                                                    <p>Scam agency: </p>
+                                                    <p style="color: rgb(0, 255, 0);" id="business-cost">$2 to $50k per month</p>
+                                                </span>
+                                                <span>
+                                                    <p>Retail store: </p>
+                                                    <p style="color: rgb(0, 255, 0);" id="business-duration">$90k to $300k per month</p>
+                                                </span>
+                                                <span>
+                                                    <p>Car shop: </p>
+                                                    <p style="color: rgb(255, 0, 0);" id="business-salary">$50k to $550k per month</p>
+                                                </span>
+                                            </cardtextcontainer>
+    
+                                        </card>
+                                        <card id="property-card" onclick="viewHousingMarket()">
+    
+                                            <cardtitle>Buy a property</cardtitle>
+    
+                                            <cardemoji>
+                                                🏠
+                                            </cardemoji>
+    
+                                            <cardtextcontainer>
+                                                <span>
+                                                    <p>You want to buy a house, or a planet</p>
+                                                </span>
+                                                <span>
+                                                    <p>Properties available for all budget</p>
+                                                </span>
+                                                <span>
+                                                    <p style="color: rgb(0, 255, 0);">See you on buyahouse.com</p>
+                                                </span>
+                                            </cardtextcontainer>
+    
+                                        </card>
+                                        <card id="Investments-card" onclick="viewInvestments()">
+    
+                                            <cardtitle>Investments</cardtitle>
+    
+                                            <cardemoji>
+                                                📈
+                                            </cardemoji>
+    
+                                            <cardtextcontainer>
+                                                <span>
+                                                    <p>Maximum gain: </p>
+                                                    <p style="color: rgb(0, 255, 0);" id="education-level">170%</p>
+                                                </span>
+                                                <span>
+                                                    <p>Maximum loss: </p>
+                                                    <p style="color: rgb(255, 0, 0);" id="education-cost">-70%</p>
+                                                </span>
+                                            </cardtextcontainer>
+    
+                                        </card>
+                                        <card id="job-card" onclick="getJob()">
+    
+                                            <cardtitle>Job</cardtitle>
+    
+                                            <cardemoji>
+                                                ⚒️
+                                            </cardemoji>
+    
+                                            <cardtextcontainer>
+                                                <span>
+                                                    <p>Increases the amount of money per tap</p>
+                                                </span>
+                                                <span>
+                                                    <p>Paychecks depends on your salary</p>
+                                                </span>
+                                            </cardtextcontainer>
+    
+                                        </card>
+                                    </grid>
+    
+                                </services>
+    
+                                <!-- ^ Crypto gains menu -->
+                                <crypto>
+    
+                                    <h2>Investments</h2>
+    
+                                    <button id="cryptoAccountButton" class="default-button"
+                                        onclick="openCryptoAccount()">
+                                        💹 Open Crypto Account (Free)
+                                    </button>
+    
+                                    <button id="moneyMachineButton" class="default-button" onclick="buyMoneyMachine()">
+                                        Buy Money Machine
+                                    </button>
+    
+                                    <button id="spammUpgradeButton" class="default-button" onclick="buySpammUpgrade()">
+                                        ...
+                                    </button>
+    
+                                    <div id="crypto-gains-menu-list"></div>
+    
+                                </crypto>
+    
+                                <!-- ^ Properties menu -->
+                                <housingmarket>
+    
+                                    <h2>Property Options</h2>
+    
+                                    <p>Buy</p>
+    
+                                    <button id="apartementButton" class="default-button"
+                                        onclick="buyProperty('Apartement')">
+                                        Buy Apartment
+                                    </button>
+    
+                                    <button id="condoButton" class="default-button" onclick="buyProperty('Condo')">
+                                        Buy Condo
+                                    </button>
+    
+                                    <button id="houseButton" class="default-button" onclick="buyProperty('House')">
+                                        Buy House
+                                    </button>
+    
+                                    <button id="castleButton" class="default-button" onclick="buyProperty('Castle')">
+                                        Buy Castle
+                                    </button>
+    
+                                    <button id="mansionButton" class="default-button" onclick="buyProperty('Mansion')">
+                                        Buy
+                                        Mansion
+                                    </button>
+    
+                                    <button id="islandButton" class="default-button" onclick="buyProperty('Island')">
+                                        Buy an Island
+                                    </button>
+    
+                                    <button id="planetButton" class="default-button" onclick="buyProperty('Planet')">
+                                        Buy Planet
+                                    </button>
+    
+                                </housingmarket>
+    
+                            </webpage>
+                        </browsercontainer>
+                    </browserblur>
+
+
+                </browsercontent>
+
+            </browser>
+
+            <!-- ^ Libraries -->
+            <script src="/_public/libraries/public-library.js"></script>
+
+            <script src="/_public/libraries/notation-numérique.js"></script>
+
+            <script src="/_public/libraries/window-creator.js"></script>
+
+            <script src="/_public/libraries/notification.js"></script>
+
+            <!-- ^ Scripts -->
+            <script src="/_pages/_games/money-game/scripts/data.js"></script>
+
+            <script src="/_pages/_games/money-game/scripts/main.js"></script>
+
+            <script src="/_pages/_games/money-game/scripts/broswer.js"></script>
+
+            <script src="/_pages/_games/money-game/scripts/stats-menu.js"></script>
+
+            <script src="/_pages/_games/money-game/scripts/money-manager.js"></script>
+
+            <script src="/_pages/_games/money-game/scripts/upgrades-manager/spamm-business-manager.js"></script>
+
+            <script src="/_pages/_games/money-game/scripts/upgrades-manager/money-machine-manager.js"></script>
+
+            <script src="/_pages/_games/money-game/scripts/upgrades-manager/crypto-manager.js"></script>
+
+            <script src="/_pages/_games/money-game/audio/audio-manager.js"></script>
+
+            <script src="/_pages/_games/money-game/scripts/monthly-events.js"></script>
+
+            <script src="/_pages/_games/money-game/scripts/properties.js"></script>
+
+            <script src="/_pages/_games/money-game/scripts/upgrades-manager/job-manager.js"></script>
+
+            <script src="/_pages/_games/money-game/scripts/manage-properties-window.js"></script>
+
+        </body>
+
+    </html>

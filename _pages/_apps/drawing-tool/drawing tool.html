@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Drawing Tool with Keyboard Shortcuts</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            position: relative;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            border: 1px solid #000;
+        }
+        .toolbar, .controls {
+            position: absolute;
+            top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .toolbar {
+            left: 10px;
+        }
+        .controls {
+            right: 10px;
+        }
+        .toolbar button, .controls button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .color-popup {
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #000;
+        }
+        .color-popup input[type="color"] {
+            width: 100%;
+            padding: 5px;
+            font-size: 16px;
+        }
+        .shortcut-popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #000;
+            z-index: 9999;
+            max-width: 80%;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+        .shortcut-popup h2 {
+            margin-top: 0;
+        }
+
+        /* Mobile Styles */
+        @media only screen and (max-width: 600px) {
+            .toolbar, .controls {
+                top: auto;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <div class="slider-container">
+            <label for="brushSize">Brush Size</label>
+            <input type="range" id="brushSize" min="1" max="20" value="2">
+        </div>
+        <button id="pencilBtn">Pencil</button>
+        <button id="eraserBtn">Eraser</button>
+        <button id="colorPickerBtn">Color Picker</button>
+        <button id="fillBtn">Fill</button>
+        <button id="shortcutBtn">?</button>
+    </div>
+    <div class="controls">
+        <button id="undoBtn">Undo</button>
+        <button id="redoBtn">Redo</button>
+    </div>
+    <canvas id="drawingCanvas"></canvas>
+    <div class="color-popup" id="colorPopup">
+        <label for="colorInput">Select Color</label>
+        <input type="color" id="colorInput">
+        <button id="closeColorPopup">Close</button>
+    </div>
+    <div class="shortcut-popup" id="shortcutPopup">
+        <h2>Keyboard Shortcuts</h2>
+        <ul>
+            <li>Ctrl + Z: Undo</li>
+            <li>Ctrl + Y: Redo</li>
+            <li>P: Pencil</li>
+            <li>E: Eraser</li>
+            <li>F: Fill Tool</li>
+            <li>X: Erase Everything</li>
+            <li>C: Change Color</li>
+        </ul>
+        <button id="closeShortcutPopup">Close</button>
+    </div>
+    <script>
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+        const undoBtn = document.getElementById('undoBtn');
+        const redoBtn = document.getElementById('redoBtn');
+        const pencilBtn = document.getElementById('pencilBtn');
+        const eraserBtn = document.getElementById('eraserBtn');
+        const colorPickerBtn = document.getElementById('colorPickerBtn');
+        const fillBtn = document.getElementById('fillBtn');
+        const brushSizeInput = document.getElementById('brushSize');
+        const colorPopup = document.getElementById('colorPopup');
+        const colorInput = document.getElementById('colorInput');
+        const closeColorPopup = document.getElementById('closeColorPopup');
+        const shortcutBtn = document.getElementById('shortcutBtn');
+        const shortcutPopup = document.getElementById('shortcutPopup');
+        const closeShortcutPopup = document.getElementById('closeShortcutPopup');
+
+        let drawing = false;
+        let paths = [];
+        let undonePaths = [];
+        let currentTool = 'pencil';
+        let brushSize = brushSizeInput.value;
+        let brushColor = '#000000';
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas(); // Initial resize to set canvas size
+
+        function startPosition(e) {
+            drawing = true;
+            if (currentTool === 'fill') {
+                fill(e);
+                drawing = false;
+            } else {
+                ctx.beginPath();
+                paths.push([]);
+                draw(e);
+            }
+        }
+
+        function endPosition() {
+            drawing = false;
+            ctx.beginPath();
+            undonePaths = [];
+        }
+
+        function draw(e) {
+            if (!drawing || currentTool === 'fill') return;
+
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const x = e.touches ? e.touches[0].clientX - rect.left: e.clientX - rect.left;
+            const y = e.touches ? e.touches[0].clientY - rect.top: e.clientY - rect.top;
+
+            ctx.lineWidth = brushSize;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = currentTool === 'eraser' ? '#f0f0f0': brushColor;
+
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+
+            paths[paths.length - 1].push({
+                x, y, color: ctx.strokeStyle, size: ctx.lineWidth
+            });
+        }
+
+        function redraw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            paths.forEach(path => {
+                ctx.beginPath();
+                path.forEach(point => {
+                    ctx.lineWidth = point.size;
+                    ctx.strokeStyle = point.color;
+                    ctx.lineTo(point.x, point.y);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(point.x, point.y);
+                });
+            });
+        }
+
+        function undo() {
+            if (paths.length > 0) {
+                undonePaths.push(paths.pop());
+                redraw();
+            }
+        }
+
+        function redo() {
+            if (undonePaths.length > 0) {
+                paths.push(undonePaths.pop());
+                redraw();
+            }
+        }
+
+        function fill(e) {
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const x = e.touches ? e.touches[0].clientX - rect.left: e.clientX - rect.left;
+            const y = e.touches ? e.touches[0].clientY - rect.top: e.clientY - rect.top;
+
+            const pixelStack = [[x,
+                y]];
+            const colorLayer = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const startColor = getPixelColor(colorLayer, x, y);
+            const fillColor = hexToRgb(brushColor);
+
+            if (colorsMatch(startColor, fillColor)) return;
+
+            while (pixelStack.length) {
+                const newPos = pixelStack.pop();
+                const x = newPos[0];
+                let y = newPos[1];
+
+                let pixelPos = (y * canvas.width + x) * 4;
+                while (y-- >= 0 && matchStartColor(colorLayer, pixelPos, startColor)) {
+                    pixelPos -= canvas.width * 4;
+                }
+                pixelPos += canvas.width * 4;
+                ++y;
+
+                let reachLeft = false;
+                let reachRight = false;
+                while (y++ < canvas.height - 1 && matchStartColor(colorLayer, pixelPos, startColor)) {
+                    colorPixel(colorLayer, pixelPos, fillColor);
+
+                    if (x > 0) {
+                        if (matchStartColor(colorLayer, pixelPos - 4, startColor)) {
+                            if (!reachLeft) {
+                                pixelStack.push([x - 1, y]);
+                                reachLeft = true;
+                            }
+                        } else if (reachLeft) {
+                            reachLeft = false;
+                        }
+                    }
+
+                    if (x < canvas.width - 1) {
+                        if (matchStartColor(colorLayer, pixelPos + 4, startColor)) {
+                            if (!reachRight) {
+                                pixelStack.push([x + 1, y]);
+                                reachRight = true;
+                            }
+                        } else if (reachRight) {
+                            reachRight = false;
+                        }
+                    }
+
+                    pixelPos += canvas.width * 4;
+                }
+            }
+            ctx.putImageData(colorLayer, 0, 0);
+        }
+
+        function getPixelColor(layer, x, y) {
+            const offset = (y * canvas.width + x) * 4;
+            return [layer.data[offset],
+                layer.data[offset + 1],
+                layer.data[offset + 2],
+                layer.data[offset + 3]];
+        }
+
+        function colorsMatch(a, b) {
+            return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3];
+        }
+
+        function hexToRgb(hex) {
+            const bigint = parseInt(hex.slice(1), 16);
+            return [(bigint >> 16) & 255,
+                (bigint >> 8) & 255,
+                bigint & 255,
+                255];
+        }
+
+        function matchStartColor(layer, pixelPos, startColor) {
+            const r = layer.data[pixelPos];
+            const g = layer.data[pixelPos + 1];
+            const b = layer.data[pixelPos + 2];
+            const a = layer.data[pixelPos + 3];
+            return r === startColor[0] && g === startColor[1] && b === startColor[2] && a === startColor[3];
+        }
+
+        function colorPixel(layer, pixelPos, color) {
+            layer.data[pixelPos] = color[0];
+            layer.data[pixelPos + 1] = color[1];
+            layer.data[pixelPos + 2] = color[2];
+            layer.data[pixelPos + 3] = color[3];
+        }
+
+        brushSizeInput.addEventListener('input', () => {
+            brushSize = brushSizeInput.value;
+        });
+
+        pencilBtn.addEventListener('click', () => {
+            currentTool = 'pencil';
+        });
+
+        eraserBtn.addEventListener('click', () => {
+            currentTool = 'eraser';
+        });
+
+        colorPickerBtn.addEventListener('click', () => {
+            colorPopup.style.display = 'flex';
+        });
+
+        fillBtn.addEventListener('click', () => {
+            currentTool = 'fill';
+        });
+
+        closeColorPopup.addEventListener('click', () => {
+            colorPopup.style.display = 'none';
+        });
+
+        shortcutBtn.addEventListener('click', () => {
+            shortcutPopup.style.display = 'flex';
+        });
+
+        closeShortcutPopup.addEventListener('click', () => {
+            shortcutPopup.style.display = 'none';
+        });
+
+        colorInput.addEventListener('input', () => {
+            brushColor = colorInput.value;
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (event) => {
+            if (event.ctrlKey && event.key === 'z') {
+                undo();
+            } else if (event.ctrlKey && event.key === 'y') {
+                redo();
+            } else if (event.key === 'p') {
+                currentTool = 'pencil';
+            } else if (event.key === 'e') {
+                currentTool = 'eraser';
+            } else if (event.key === 'f') {
+                currentTool = 'fill';
+            } else if (event.key === 'x') {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                paths = [];
+                undonePaths = [];
+            } else if (event.key === 'c') {
+                colorPopup.style.display = 'flex';
+            }
+        });
+
+        canvas.addEventListener('mousedown', startPosition);
+        canvas.addEventListener('mouseup', endPosition);
+        canvas.addEventListener('mousemove', draw);
+
+        canvas.addEventListener('touchstart', startPosition);
+        canvas.addEventListener('touchend', endPosition);
+        canvas.addEventListener('touchmove', draw);
+
+        undoBtn.addEventListener('click', undo);
+        redoBtn.addEventListener('click', redo);
+    </script>
+</body>
+</html>

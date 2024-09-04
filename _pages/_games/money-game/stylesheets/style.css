@@ -1,0 +1,56 @@
+.content {
+    backdrop-filter: blur(10px) invert(100%);
+    background-color: transparent;
+    color: white;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+
+.inline-block {
+    display: inline-block;
+}
+
+#counter {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+#actions {
+    position: fixed;
+    overflow: auto;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(15, 15, 15);
+    padding: 10px;
+    box-sizing: border-box;
+    height: 200px;
+}
+
+.action {
+    color: white;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.text-button {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: #4897FF;
+}
+
+
+@media screen and (max-width: 400px) {
+    button {
+        font-size: 7px;
+    }
+
+    p {
+        font-size: 13px;
+    }
+}

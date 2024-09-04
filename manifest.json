@@ -1,0 +1,20 @@
+{
+  "name": "Shawny",
+  "short_name": "SH",
+  "start_url": "/",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/_files/images/logos/shawny192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/_files/images/logos/shawny512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
