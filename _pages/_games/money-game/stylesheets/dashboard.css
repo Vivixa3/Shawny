@@ -1,0 +1,28 @@
+.title-bar {
+    width: 100vw;
+    height: auto;
+    /* background-color: black; */
+    padding: 0;
+}
+
+#suicide-button {
+    background-color: none;
+    border: none;
+    position: absolute;
+    top: -100px;
+    left: 25px;
+    font-size: 30px;
+    background-image: url('/_pages/_games/money-game/images/rope-icon.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100px;
+    scale: 2.5;
+    width: fit-content;
+    margin: 0;
+    transition: ease-in-out 0.3s;
+}
+
+#suicide-button:hover {
+    top: -15px;
+}

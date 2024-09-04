@@ -1,0 +1,11 @@
+housingmarket {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: left;
+}
+
+.house-button {
+    padding: 10px;
+    text-align: left;
+}

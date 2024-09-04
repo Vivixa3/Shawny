@@ -1,0 +1,48 @@
+body {
+    margin: auto;
+    color: black;
+}
+
+p {
+    font-family: Arial;
+    font-weight: 300;
+    cursor: pointer; /* Makes it clear that the text is clickable */
+}
+
+a {
+    color: purple;
+}
+
+.topbar {
+    width: auto;
+    color: white;
+    background-color: #000000;
+    text-align: center;
+    padding: 15px;
+    font-family: Arial;
+    font-size: 24px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Creates 3 equal-width columns */
+    margin: 10px;
+}
+
+.grid-item {
+    background-color: transparent;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#eighteen {
+    text-align: center;
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}

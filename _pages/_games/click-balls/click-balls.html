@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Click Balls</title>
+  <style>
+    body {
+      user-select: none;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      background-color: black;
+    }
+    canvas {
+      border: none;
+    }
+    #counter, #highScore {
+      position: absolute;
+      top: 10px;
+      padding: 5px 10px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border: 1px solid black;
+    }
+    #counter {
+      right: 10px;
+    }
+    #highScore {
+      left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <audio src="/_pages/_games/click-balls/audio/The Bazaar Canon - Hanu Dixit.mp3" autoplay loop></audio>
+  <canvas id="gameCanvas"></canvas>
+  <div id="counter">Balls clicked: <span id="clickCount">0</span></div>
+  <div id="highScore">Highest score: <span id="highScoreValue">0</span></div>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const counter = document.getElementById('clickCount');
+    const highScoreDisplay = document.getElementById('highScoreValue');
+    const BALL_RADIUS = 15; // Radius of the balls in pixels
+    const HITBOX_RADIUS = 20
+
+    // Function to resize the canvas
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    // Initial resize
+    resizeCanvas();
+
+    // Resize the canvas whenever the window is resized
+    window.addEventListener('resize', resizeCanvas);
+
+    let balls = [];
+    let clickCount = 0;
+    let isGameOver = false;
+    let highScore = localStorage.getItem('highScore') || 0;
+    highScoreDisplay.textContent = highScore;
+
+    function Ball(x, y, dx, dy, color) {
+      this.x = x;
+      this.y = y;
+      this.dx = dx;
+      this.dy = dy;
+      this.radius = BALL_RADIUS;
+      this.color = color;
+
+      this.draw = function() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
+      };
+
+      this.update = function() {
+        this.x += this.dx;
+        this.y += this.dy;
+
+        if (this.x + this.dx > canvas.width - this.radius || this.x + this.dx < this.radius) {
+          this.dx = -this.dx;
+        }
+        if (this.y + this.dy > canvas.height - this.radius || this.y + this.dy < this.radius) {
+          this.dy = -this.dy;
+        }
+      };
+    }
+
+    function generateBall() {
+      const x = Math.random() * (canvas.width - 2 * BALL_RADIUS) + BALL_RADIUS; // Ensure ball is within canvas horizontally
+      const y = Math.random() * (canvas.height - 2 * BALL_RADIUS) + BALL_RADIUS; // Ensure ball is within canvas vertically
+      const dx = (Math.random() - 0.5) * 4; // Random velocity in x direction
+      const dy = (Math.random() - 0.5) * 4; // Random velocity in y direction
+      const color = '#ffffff';
+      balls.push(new Ball(x, y, dx, dy, color));
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      balls.forEach(ball => {
+        ball.draw();
+        ball.update();
+      });
+      checkCollision();
+      if (isGameOver) {
+        gameOver();
+      }
+    }
+
+    function checkCollision() {
+      for (let i = 0; i < balls.length; i++) {
+        for (let j = i + 1; j < balls.length; j++) {
+          const dx = balls[i].x - balls[j].x;
+          const dy = balls[i].y - balls[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < balls[i].radius + balls[j].radius) {
+            isGameOver = true;
+            break;
+          }
+        }
+      }
+    }
+
+    function gameOver() {
+      clearInterval(ballGenerator);
+      clearInterval(drawInterval);
+
+      if (clickCount > highScore) {
+        highScore = clickCount;
+        localStorage.setItem('highScore', highScore);
+        highScoreDisplay.textContent = highScore;
+      }
+
+      const restart = confirm("Game Over. Two balls collided. Do you want to restart?");
+      if (restart) {
+        resetGame();
+      }
+    }
+
+    function resetGame() {
+      balls = [];
+      clickCount = 0;
+      isGameOver = false;
+      counter.textContent = clickCount;
+      ballGenerator = setInterval(generateBall, 1000);
+      drawInterval = setInterval(draw, 10);
+    }
+
+    let ballGenerator = setInterval(generateBall, 1000); // Generate a new ball every second
+    let drawInterval = setInterval(draw, 10);
+
+    canvas.addEventListener('mousedown', function(event) {
+      const rect = canvas.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const clickY = event.clientY - rect.top;
+
+      balls.forEach((ball, index) => {
+        const distance = Math.sqrt((clickX - ball.x) ** 2 + (clickY - ball.y) ** 2);
+        if (distance < HITBOX_RADIUS) { // Use the larger hitbox radius for easier clicking
+          balls.splice(index, 1);
+          clickCount++;
+          counter.textContent = clickCount;
+        }
+      });
+    });
+
+    canvas.addEventListener('touchstart', function(event) {
+      event.preventDefault();
+      const rect = canvas.getBoundingClientRect();
+      const touch = event.touches[0];
+      const touchX = touch.clientX - rect.left;
+      const touchY = touch.clientY - rect.top;
+
+      balls.forEach((ball, index) => {
+        const distance = Math.sqrt((touchX - ball.x) ** 2 + (touchY - ball.y) ** 2);
+        if (distance < HITBOX_RADIUS) { // Use the larger hitbox radius for easier clicking
+          balls.splice(index, 1);
+          clickCount++;
+          counter.textContent = clickCount;
+        }
+      });
+    });
+    
+  </script>
+</body>
+</html>

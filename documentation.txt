@@ -1,0 +1,115 @@
+Documentation
+
+
+You can enable word wrap to make the text more readable. The shortcut is [Alt+Z]
+
+
+Section I : Introduction
+
+***This documentation is there to help you be organized. Some of the information in this documentation 
+is not necessary to know how to work, but it can be helpful if you want to understand. SOME OTHER INFORMATIONS,
+on the other hand, ARE ABSOLUTELY NECESSARY TO MAKE THE REPOSITORY CLEAN FOR THE OTHER DEVELOPERS.
+My name is Xavier, I am the lead developer behind this project. If you have any questions or if you need help with
+anything, don't hesitate to contact me at shawny@ecxogames.ca or via whatsapp at +1 514-557-3147.
+
+
+First thing I have to say is...
+
+{DO NOT TOUCH ANY OF THE FOLDERS OR FILES THAT IF YOU DON'T KNOW WHAT THEY DO, ACCIDENTALLY DELETING ANY FILES OR FOLDERS COULD RESULT TO THE PROJECT BEING BROKEN.}
+
+
+
+This documentation will help you to work with my code AND to understand how to make it so everyone can read it.
+I am not a big fan of artificial intelligence when it comes to help you with your code but I can allow you to use it (resonnably).
+But know that whatever the AI tells you, even if it works, there may be issues with the structure of the code.
+
+Like always, if you are not sure about something, don't hesitate to ask me.
+
+
+Section II : Project structure
+
+
+Symbol chart:
+    * = the name has to be the same as shown
+    ! = should have the same properties as shown
+    & = should be exactly the same as shown
+    ~ = should be a read-only file
+    ? = should have a *README.md or *README.txt file
+
+
+Function types & naming convention:
+
+    ! dashed-lowercase : Use this for files, folder, ids and classes
+
+    ! pascalCased : Use these for functions
+
+    ! non_capitalized_undescored [OR] noncapitalizedunderscored : Use this for variables
+
+    ! wahtevername_MODULE : Use this for modules
+
+    ! twoword_SEMICAPS : Use this for parameters [ONLY]
+
+    ! CAPITALIZED_FUNCTIONS : Use this for functions that are only triggered once and at first.
+
+
+Files & folders organization:
+
+    Naming and organizing the files and folders looks easy. Well it is. If you put things in random places.
+    Because will have a lot of files in the project, we need to be organized. And below, you will find the correct way of organizing your files.
+
+
+    But first, let me tell you about our method...
+
+
+    Within the devs, we have a very particular way of organizing the things. You may not be used to it and that is why you will have to read carefuly.
+
+    Step I:
+        When you create a new project you will need at least three files. Before creating these three files, you will need to create a folder to put them inside. Name the folder whatever youy want, but make it recognizable please.
+        If you put your three files in the MAIN directory of the project or anywhere that you haven't take note of, you will be lost the next time you open Visual Studio and you will be subject to do regretable things. Please, just keep it organized.
+        In the main directory, you can find multiple folders and files. You should, in no terms, use or modify anyhing in the MAIN directory, or anywhere else, that you have not the ownership of, nor create folders or files there.
+        If you do so, it is going to be a mess and I will not hesitate to give you the job of putting things back to normal, which can, in some cases, take days...
+        Anyway, now that you now why it is important, let's move on to the next step.
+    
+    Step II:
+        You will have to organize you files this way:
+
+            /SHAWNY (MAIN folder)
+                index.html
+                /audio
+                /images
+                /IntroStory
+                /libraries
+                /money-game
+                ...and vice versa...
+                /Your-Project-Name # this is the folder where you need to put you .html .css and .js files. the other files and folders are not necessary, but if you need an audio file, you will need an audio folder. same applies for all the other folders marked below.
+                    index.html [OR] main.html
+                    /audio
+                    /images
+                    /stylesheets
+                        style.css # main css file
+                        style-namespace.css # what the css do (eg. main-menu.css for a style applied to a main menu)
+                    /scripts
+                        /namespace or /name-space # the namespace is just what the scripts in the folder do (eg. /upgrades or /game-upgrades when the namespace has more than one word)
+                        script.js [OR] main.js # main files for your scripts
+                        nameofscript-namespace.js # following the example from above where we have /upgrades as the namespaces... the javascript file should be named money-upgrade.js with the name of the folder at the end. it facilitate the file search process
+                        script-name.js # if you need extra js file, name it so
+    
+    Setp III:
+        Now that you have your files organized, you can start creating your project. Be creative ;P
+    
+Section III : Ressources
+
+    Now that you got are onboard, let's get equiped and ready to code.
+
+    
+    Here are some good extensions for Visual Studio Code that could help you with your project:
+
+            Blackboxapp.blackbox    #  This extension will help you to debug your code. It is very useful when you are trying to find the source of a bug. Also useful to piss me off.
+        {To install an extension, just copy the extention ID and paste it in the search bar in the extension panel on the left of Visual Studio Code's interface. The icon should look like puzzle pieces.}
+            ParthR2031.colorful-comments    #  This extension will help you to color your comments. It is very useful when you are trying to organize and colorize you code.
+            mgiesen.image-comments  #   This extension will help you to add images to your comments. It is very useful when you are trying to show things in your code. I don't know why I use it, but it could be useful.
+            ritwickdey.LiveServer   #   You will need to use this plugin to debug. Use this instead of pushing changes to the website. While being faster than waiting for the changes to be published, you can also see changes in real time right into VS Code. If you have the option of using the VS Code application, please consider using this otherwise the website run out of build times.
+            awesomektvn.toggle-semicolon    #    This extension will help you to toggle the semicolon. Nothing else to say.
+            xshrim.txt-syntax   #    This extension will help you to change the syntax of the text. Very useful for editing text files.
+
+Section VI : Coming soon
