@@ -1,0 +1,163 @@
+body,
+html {
+  scrollbar-width: none;
+  margin: 0;
+  padding: 25px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  overflow: hidden;
+  font-family: Arial;
+}
+
+#settings-bttn {
+  background-color: transparent;
+  border: none;
+  cursor: not-allowed;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: x-large;
+}
+
+.background {
+  position: fixed;
+  background-color: black;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.circle {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.container {
+  display: grid;
+  grid-auto-flow: column;
+  padding: 50px;
+  height: 250px;
+  overflow-x: auto;
+  justify-items: center;
+  align-items: center;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  z-index: 1;
+}
+
+.level {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 180px;
+  margin: 25px;
+  cursor: pointer;
+  height: 180px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(5px);
+  scroll-snap-align: center;
+}
+
+.level::before {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.level:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+  border-color: rgba(0, 255, 255, 0.8);
+}
+
+.container::-webkit-scrollbar {
+  height: 10px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Example content */
+.content {
+  position: relative;
+  padding: 20px;
+  z-index: 1;
+  /* Make sure the content is above the background */
+}
+
+.starry-sky-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  /* Black with 80% opacity */
+  z-index: 1000;
+  /* Ensure it appears on top of other elements */
+}
+
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+#playText {
+  color: white;
+  font-family: Arial;
+  text-align: center;
+  margin-top: 85vh;
+}
+
+#musicName {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+}
+
+#version {
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  text-align: right;
+}

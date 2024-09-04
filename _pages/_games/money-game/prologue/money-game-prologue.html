@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Document</title>
+
+    <!-- <link rel="stylesheet" href="/_pages/_games/money-game/prologue/money-game-prologue.style.css"> -->
+
+    <link rel="stylesheet" href="/_pages/_games/money-game/prologue/main-menu.css">
+
+</head>
+
+<body>
+
+    <div class="play-menu">
+
+        <audio src="/_pages/_games/money-game/prologue/soundscape/tracks/Hopeless - Jimena Contreras.mp3"
+            id="play-screen-music" autoplay loop></audio>
+
+        <video autoplay muted loop id="video-background"
+            src="/_pages/_games/money-game/prologue/videos/liberty-statue.mp4" type="video/mp4"></video>
+
+
+
+        <div id="blur">
+            <p id="title">the MONEY Game</p>
+
+            <div id="menu-content">
+                <div id="start-menu-content">
+                </div>
+                <div id="start-menu-content-bttn-container">
+                    <button onclick="openAboutUsMenu()">About the devs</button>
+                    <button onclick="window.location.href='/_pages/_games/money-game/prologue/intro/intro.html'">Start
+                        the game</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="about-us">
+            <div id="scroll">
+                <h1>About us</h1>
+
+                <br>
+
+                <h2>About us</h2>
+
+
+
+                <p>The small team that currently develops shawny.app is part of a game development studio named ECXO
+                    GAMES. This studio was first initiated in 2022 as a friend’s project but quickly gained
+                    contributors. As of September 2024, the time this paragraph was written, ECXO GAMES is still in its
+                    early steps. The two founders of ECXO created the studio just so they could have fun coding a game.
+                    As of right now, bigger projects are planned for the year 2025 and 2026.</p>
+
+                <br>
+
+                <h2>Credits</h2>
+
+
+
+                <p style="line-height: 25px; margin: 0;">Lead Devs: S. Xavier C. L., Ryan S. Hernandez</p>
+                <p style="line-height: 25px; margin: 0;">Designers: Shan J., Louis R.</p>
+                <p style="line-height: 25px; margin: 0;">Artists: Navid S.</p>
+                <p style="line-height: 25px; margin: 0;">Contributor(s): Aniss S.</p>
+            </div>
+            <div id="close-button-container">
+                <button onclick="closeAboutUsMenu()">Close</button>
+            </div>
+        </div>
+
+
+        <script src="/_pages/_games/money-game/prologue/handle-play-menu.js"></script>
+
+</body>
+
+</html>

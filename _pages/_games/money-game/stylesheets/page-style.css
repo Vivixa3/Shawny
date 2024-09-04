@@ -1,0 +1,86 @@
+:root {
+  --default-margin: 5px;
+  --default-padding: 5px;
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+}
+
+span p {
+  padding: 0;
+  display: inline;
+}
+
+body {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: hidden;
+  background-image: url('/_pages/_games/money-game/images/new-york-map.png');
+  background-size: cover;
+  background-repeat: auto;
+  box-sizing: content-box;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: normal;
+  padding: var(--default-padding)
+}
+
+input {
+  padding: var(--default-padding);
+  color: white;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 4px;
+}
+
+button {
+  margin: var(--default-margin);
+  padding: var(--default-padding);
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 4px;
+}
+
+button:disabled {
+  margin: var(--default-margin);
+  padding: var(--default-padding);
+  cursor: not-allowed;
+  background-color: transparent;
+  color: rgb(75, 75, 75);
+  border: 2px solid rgb(75, 75, 75);
+  border-radius: 4px;
+}

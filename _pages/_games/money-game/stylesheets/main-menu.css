@@ -1,0 +1,60 @@
+.main-menu {
+    backdrop-filter: blur(25px);
+    padding: 75px;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 11;
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    position: absolute;
+    overflow: hidden;
+}
+
+.main-menu button {
+    position: absolute;
+    border-radius: 6px;
+    width: 300px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    height: 50px;
+    bottom: 300px;
+}
+
+.main-menu button:hover {
+    background-color: rgba(20, 20, 20, 0.685);
+}
+
+.main-menu text {
+    font-size: auto;
+}
+
+#main-menu-content {
+    height: 100vh;
+    width: 100vw;
+    display: inline;
+    padding: 10px;
+}
+
+
+#main-menu-title {
+    width: 100%;
+    height: 30%;
+    line-height: auto;
+    height: auto;
+    text-align: center;
+    color: white;
+    font-family: Arial;
+    line-height: auto;
+}
+
+#main-menu-start-bttn-container {
+    width: 100%;
+    height: 70%;
+    position: static;
+}
+
+#main-menu-start-bttn-container button {
+    position: absolute;
+    max-width: 75%;
+}

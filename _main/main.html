@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Shawny</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" href="/_files/images/logos/shawny512.png">
+    <link rel="apple-touch-icon" href="/_files/images/logos/shawny512.png">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="starry-sky-overlay">
+        <p id="playText">click anywhere to start...</p>
+    </div>
+
+    <audio id="mainmenumusic" muted loop>
+        <source src="/_main/audio/mainmenumusic.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="background"></div>
+
+    <div class="container">
+        <div class="level" style="background-image: url('/_main/images/click-balls-logo.png');"
+            onclick="window.location.href='/_pages/_games/click-balls/click-balls.html'"></div>
+        <div class="level" style="background-image: url('/_main/images/money-game-logo.png');"
+            onclick="window.location.href='/_pages/_games/money-game/prologue/money-game-prologue.html'"></div>
+        <div class="level" style="background-image: url('/_main/images/the-disturbance-logo.png');"
+            onclick="window.location.href='/_pages/_games/intro-story/IntroStory.html'"></div>
+        <!-- <div class="level" style="background-image: url('');" onclick="window.location.href=''"></div> -->
+    </div>
+
+    <!-- <p id="musicName">Song: Missing Persons by Jeremy Blake</p> -->
+    <p id="version">V.0.0.1.2 - Experimental</p>
+
+    <script src="/_main/main.js"></script>
+
+</body>
+
+</html>

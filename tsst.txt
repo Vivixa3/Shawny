@@ -1,0 +1,145 @@
+<html>
+<head>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            background-color: #e0e0e0;
+            padding: 20px;
+        }
+        .card {
+            background-color: #b0b0b0;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .card .title {
+            grid-column: span 2;
+            background-color: #888888;
+            padding: 5px;
+        }
+        .card .image {
+            background-color: #888888;
+            height: 100px;
+        }
+        .card .text {
+            background-color: #888888;
+            padding: 5px;
+            height: 30px; /* Set a fixed height for all text divs */
+        }
+        .card .text-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="grid">
+            <div class="card">
+                <div class="title">Title</div>
+                <div class="image"></div>
+                <div class="text-container">
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Title</div>
+                <div class="image"></div>
+                <div class="text-container">
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Title</div>
+                <div class="image"></div>
+                <div class="text-container">
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Title</div>
+                <div class="image"></div>
+                <div class="text-container">
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Title</div>
+                <div class="image"></div>
+                <div class="text-container">
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Title</div>
+                <div class="image"></div>
+                <div class="text-container">
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Title</div>
+                <div class="image"></div>
+                <div class="text-container">
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Title</div>
+                <div class="image"></div>
+                <div class="text-container">
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Title</div>
+                <div class="image"></div>
+                <div class="text-container">
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                    <div class="text">Text</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

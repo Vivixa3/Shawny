@@ -1,0 +1,30 @@
+#loader {
+    position: absolute;
+    background-color: black;
+    display: flex;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#ecxo-outro {
+    transform: scale(0.5);
+}
+
+#loading-text {
+    color: white;
+    position: absolute;
+    bottom: 25px;
+}
+
+.game {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
